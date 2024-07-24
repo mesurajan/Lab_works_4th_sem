@@ -118,3 +118,20 @@ int main() {
 
     return 0;
 }
+/*
+Enter the number of states: 3
+Enter the number of alphabet symbols: 2
+Enter the alphabet symbols: 0 1
+Enter the transition table (use state numbers starting from 0):
+δ(q0, 0) = q1
+δ(q0, 1) = q0
+δ(q1, 0) = q2
+δ(q1, 1) = q0
+δ(q2, 0) = q2
+δ(q2, 1) = q2
+Enter the initial state: q0
+Enter the number of accepting states: 2
+Enter the accepting states: 1 2
+Enter a string to simulate: 010
+
+*/
