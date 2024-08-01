@@ -51,4 +51,4 @@ enum states delta(enum states s, char ch) {
     }
     return curr_state;
 }
-//01110--accepted and 1001--rejected
+//01110--accepted and 1001--rejected 

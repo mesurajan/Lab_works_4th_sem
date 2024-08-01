@@ -1,4 +1,4 @@
-//wap to implement generic DFA which can simulate the any DFAdefined by user.
+//wap to implement generic DFA which can simulate the any DFA defined by user.
 
 #include <stdio.h>
 
