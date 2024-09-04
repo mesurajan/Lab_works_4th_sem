@@ -40,19 +40,18 @@ struct Graph* createGraph(int vertices) {
     return graph;
 }
 
-// Add edge
+
 void addEdge(struct Graph* graph, int src, int dest) {
     struct Node* newNode = createNode(dest);
     newNode->next = graph->adjLists[src];
     graph->adjLists[src] = newNode;
 
-    // Since it's an undirected graph, add the reverse edge too
+   
     newNode = createNode(src);
     newNode->next = graph->adjLists[dest];
     graph->adjLists[dest] = newNode;
 }
 
-// DFS algorithm
 void DFS(struct Graph* graph, int vertex) {
     struct Node* adjList = graph->adjLists[vertex];
     struct Node* temp = adjList;
