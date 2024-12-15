@@ -1,0 +1,72 @@
+
+------------------------------------------------------------------------------------------
+-----------------------------------------LAB 05-------------------------------------------
+------------------------------------------------------------------------------------------
+
+
+--Perform join operation on teacher and employee table and display the Ename, Faculty, and salary:
+
+SELECT e.ename, t.Faculty, e.salary
+FROM teacher t
+JOIN Employee e ON t.eid = e.eid;
+
+
+--Perform left join on table Booklist and Book table:
+
+SELECT bl.isbn, bl.name AS BooklistName, b.bid, b.bname
+FROM Booklist bl
+LEFT JOIN Book b ON bl.name = b.bname;
+
+--Perform right join on Booklist and Book table:
+
+SELECT bl.isbn, bl.name AS BooklistName, b.bid, b.bname
+FROM Booklist bl
+RIGHT JOIN Book b ON bl.name = b.bname;
+
+--Perform full join on Student and Issues table:
+
+SELECT s.ID, s.Name, i.iid, i.name AS IssuedTo
+FROM student s
+FULL OUTER JOIN Issues i ON s.ID = i.iid;
+
+--Display those employees' names and salary whose name starts with 's' and whose name consists of 'ni' as a substring:
+
+SELECT ename, salary
+FROM Employee
+WHERE ename LIKE 's%' AND ename LIKE '%ni%';
+
+--Display the name of the employee who is also a teacher:
+
+SELECT e.ename
+FROM Employee e
+JOIN teacher t ON e.eid = t.eid;
+
+--Display all employees' names except those who are teachers:
+
+SELECT e.ename
+FROM Employee e
+WHERE e.eid NOT IN (SELECT t.eid FROM teacher t);
+
+--Create a view Employee-view which consists of eid, ename, salary as attributes:
+
+CREATE VIEW Employee_view AS
+SELECT eid, ename, salary
+FROM Employee;
+
+
+--Insert a new record in the recently created view and display the contents of the primary table:
+
+INSERT INTO Employee_view (eid, ename, salary)
+VALUES (5, 'Krishna', 6000);
+SELECT * FROM Employee;
+
+
+--Delete the information from the view where salary is less than 5000:
+
+DELETE FROM Employee_view
+WHERE salary < 5000;
+SELECT * FROM Employee;
+
+
+
+

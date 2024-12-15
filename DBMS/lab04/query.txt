@@ -1,0 +1,78 @@
+
+-----------------------------------------------------------------------------------------
+-----------------------------------LAB 04------------------------------------------------
+-----------------------------------------------------------------------------------------
+
+
+--Sort the employee records in descending order:
+
+SELECT * FROM Employee
+ORDER BY salary DESC;
+
+
+--Sort name and publication name in ascending order:
+
+SELECT * FROM Booklist
+ORDER BY name ASC, publication ASC;
+
+
+--Display top three records from teachers relation:
+
+SELECT TOP 3 * FROM teacher
+ORDER BY TID;
+
+
+--Display the sum of salaries of all employees:
+
+SELECT SUM(salary) AS TotalSalaries
+FROM Employee;
+
+--Display the minimum salary of employee:
+
+SELECT MIN(salary) AS MinimumSalary
+FROM Employee;
+
+--Display the average price of book written by the same author:
+
+SELECT author, AVG(price) AS AveragePrice
+FROM Book
+GROUP BY author;
+
+--Display publication name and number of books published by it from book list relation publication-wise:
+
+SELECT publication, COUNT(*) AS NumberOfBooks
+FROM Booklist
+GROUP BY publication;
+
+--Display the bid and bname of books whose price is greater than the average price of books:
+
+SELECT bid, bname
+FROM Book
+WHERE price > (SELECT AVG(price) FROM Book);
+
+--Find the bid, bname, and author in ascending order where author name starts with "s":
+
+SELECT bid, bname, author
+FROM Book
+WHERE author LIKE 's%'
+ORDER BY bid, bname, author;
+
+
+--Find the teacher’s name and the book taken by him, where the teacher’s salary who takes the book should be the maximum salary:
+SELECT t.Name, b.bname
+FROM teacher t
+JOIN Employee e ON t.eid = e.eid
+JOIN Issues i ON t.eid = i.iid
+JOIN Book b ON i.bid = b.bid
+WHERE e.salary = (SELECT MAX(salary) FROM Employee);
+
+
+--Find the authors’ names who have written more than one book:
+
+SELECT author
+FROM Book
+GROUP BY author
+HAVING COUNT(*) > 1;
+
+
+

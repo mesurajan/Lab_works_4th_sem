@@ -1,0 +1,71 @@
+
+---------------------------------------------------------------------------------------------------
+------------------------------------lab 3-------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
+select bname,publication,author
+from book 
+JOIN Booklist ON Book.bname=Booklist.name
+where Booklist.publication ='Ekta';
+
+
+SELECT t.Name, t.Faculty
+FROM teacher t
+JOIN Issues i ON t.eid = i.iid
+WHERE i.dateofissue = '2015-01-01';
+
+
+SELECT e.ename
+FROM Employee e
+JOIN teacher t ON e.eid = t.eid
+WHERE e.salary > 10000 AND t.Faculty = 'Computer Science';
+
+ALTER TABLE Issues
+ADD bid INT;
+
+UPDATE Issues
+SET bid = (
+    SELECT b.bid 
+    FROM Book b 
+    WHERE bname = Issues.name
+);
+
+
+SELECT t.Name, b.bname
+FROM teacher t
+JOIN Issues i ON t.eid = i.iid
+JOIN Book b ON i.bid = b.bid
+WHERE t.Name LIKE 'S%';
+
+UPDATE Employee
+SET salary = salary * 1.10;
+
+UPDATE Book
+SET bname = 'DATABASE'
+WHERE bname = 'DBMS';
+
+
+UPDATE Employee
+SET salary = salary * 1.20
+WHERE salary < 5000;
+
+
+DELETE FROM Employee
+WHERE eid = 111;
+
+SELECT Name, Faculty
+FROM teacher
+WHERE eid IN (
+    SELECT eid
+    FROM Employee
+    WHERE dateofemploy = '2011-01-02'
+);
+
+SELECT bname, author
+FROM Book
+WHERE bid IN (
+    SELECT isbn
+    FROM Booklist
+    WHERE publication = 'Ekta'
+);
+
